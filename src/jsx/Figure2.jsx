@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 // Load helpers.
 import CSVtoJSON from './helpers/CSVtoJSON.js';
-import ChartStackedColumn from './components/ChartStackedColumn.jsx';
+import ChartStackedGroupedColumn from './components/ChartStackedGroupedColumn.jsx';
 
 import '../styles/styles.less';
 
-function Figure1({ lang }) {
+function Figure2({ lang }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
@@ -15,7 +15,7 @@ function Figure1({ lang }) {
     // const labels = Object.keys(el).filter(val => val !== 'Name');
     const values = Object.values(el).map(val => (parseFloat(val))).filter((val, j) => !Number.isNaN(val) && j > 0);
     return ({
-      color: (i < 2) ? '#004987' : (i < 4) ? '#009edb' : '#c5dfef',
+      color: (i < 2) ? '#009edb' : (i < 4) ? 'rgba(0, 158, 219, 0.8)' : 'rgba(0, 158, 219, 0.6)',
       data: values,
       name: (i < 2) ? 'Year 2020' : (i < 4) ? 'Year 2021' : 'Year 2022',
       showInLegend: !((i % 2)),
@@ -42,7 +42,7 @@ function Figure1({ lang }) {
   return (
     <div className="app">
       {dataFigure && (
-      <ChartStackedColumn
+      <ChartStackedGroupedColumn
         data={dataFigure}
         data_decimals={0}
         idx="2"
@@ -56,6 +56,8 @@ function Figure1({ lang }) {
         xcategories={lang === 'fr' ? [] : (lang === 'es' ? [] : ['Developed countries', 'Developing countries', 'Least developed countries'])}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '%')}
         ylabel=""
+        ymax={100}
+        ymin={0}
       />
       )}
       <noscript>Your browser does not support JavaScript!</noscript>
@@ -63,12 +65,12 @@ function Figure1({ lang }) {
   );
 }
 
-Figure1.propTypes = {
+Figure2.propTypes = {
   lang: PropTypes.string
 };
 
-Figure1.defaultProps = {
+Figure2.defaultProps = {
   lang: 'en'
 };
 
-export default Figure1;
+export default Figure2;

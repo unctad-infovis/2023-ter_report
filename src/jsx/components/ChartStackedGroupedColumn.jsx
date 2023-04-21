@@ -10,6 +10,7 @@ import Highcharts from 'highcharts';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 import highchartsExporting from 'highcharts/modules/exporting';
 import highchartsExportData from 'highcharts/modules/export-data';
+import roundNr from '../helpers/RoundNr.js';
 
 highchartsAccessibility(Highcharts);
 highchartsExporting(Highcharts);
@@ -39,8 +40,23 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
   ];
   return path;
 };
+// eslint-disable-next-line
+(function (H) {
+  H.wrap(
+    H.Legend.prototype,
+    'init',
+    // eslint-disable-next-line
+    function (proceed, chart, options) {
+      if (options.enableMouseTracking === false) {
+        this.setItemEvents = false;
+      }
 
-function StackedColumnChart({
+      proceed.apply(this, [chart, options]);
+    }
+  );
+}(Highcharts));
+
+function ChartStackedGroupedColumn({
   data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin
 }) {
   const chartRef = useRef();
@@ -56,7 +72,7 @@ function StackedColumnChart({
           color: 'rgba(0, 0, 0, 0.8)',
           fontSize: '14px'
         },
-        text: `${source} ${note ? (`<br /><span>${note}</span>`) : ''}`,
+        text: `${source} ${note ? (`<br /> <span>${note}</span>`) : ''}`,
         useHTML: true,
         verticalAlign: 'bottom',
         x: 0
@@ -97,7 +113,6 @@ function StackedColumnChart({
         },
         type: 'column'
       },
-      colors: ['#009edb', '#72bf44'],
       credits: {
         enabled: false
       },
@@ -115,9 +130,10 @@ function StackedColumnChart({
       legend: {
         align: 'right',
         enabled: (data.length > 1),
+        enableMouseTracking: false,
         itemStyle: {
           color: '#000',
-          cursor: 'default',
+          cursor: 'pointer',
           fontFamily: 'Roboto',
           fontSize: '14px',
           fontWeight: 400
@@ -131,20 +147,32 @@ function StackedColumnChart({
           animation: {
             duration: 3000,
           },
+          borderWidth: 0,
           cursor: 'pointer',
-          dataLabels: {
+          dataLabels: [{
             align: 'center',
             enabled: true,
+            formatter() {
+              // eslint-disable-next-line
+              if (this.color === '#009edb' && this.series._i % 2 === 0) {
+                return '<div class="datalabel" style="position: relative; top: 25px; left: -5px">Male</div>';
+              }
+              // eslint-disable-next-line
+              if (this.color === '#009edb' && this.series._i % 2 === 1) {
+                return '<div class="datalabel" style="position: relative; top: 25px; left: -5px">Female</div>';
+              }
+              return '';
+            },
             style: {
               color: 'rgba(0, 0, 0, 0.8)',
               fontFamily: 'Roboto',
-              fontSize: '14px',
-              fontWeight: 700,
+              fontSize: '12px',
+              fontWeight: 400,
               textOutline: '0px solid #fff'
             },
             useHTML: true,
             verticalAlign: 'bottom'
-          },
+          }],
           events: {
             legendItemClick() {
               return false;
@@ -184,7 +212,7 @@ function StackedColumnChart({
         rules: [{
           chartOptions: {
             title: {
-              margin: 40
+              margin: 10
             }
           },
           condition: {
@@ -220,7 +248,7 @@ function StackedColumnChart({
       },
       title: {
         align: 'left',
-        margin: 40,
+        margin: 10,
         style: {
           color: '#000',
           fontSize: '30px',
@@ -238,7 +266,7 @@ function StackedColumnChart({
         crosshairs: true,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">Domestic:</span> <span class="tooltip_value">${this.points[0].y}</span></div><div class="tooltip_row"><span class="tooltip_label">Cross-border:</span> <span class="tooltip_value">${this.points[1].y}</span></div></div>`;
+          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">Male</span><br /><span class="tooltip_value">2020: <strong>${roundNr(this.points[0].y, 0)}${xlabel}</strong></span><br /><span class="tooltip_value">2021: <strong>${roundNr(this.points[0].y + this.points[2].y, 0)}${xlabel}</strong></span><br /><span class="tooltip_value">2022: <strong>${roundNr(this.points[0].y + this.points[2].y + this.points[4].y, 0)}${xlabel}</strong></span></div><div class="tooltip_row"><span class="tooltip_label">Female</span><br /><span class="tooltip_value">2020: <strong>${roundNr(this.points[1].y, 0)}${xlabel}</strong></span><br /><span class="tooltip_value">2021: <strong>${roundNr(this.points[1].y + this.points[3].y, 0)}${xlabel}</strong></span><br /><span class="tooltip_value">2022: <strong>${roundNr(this.points[1].y + this.points[3].y + this.points[5].y, 0)}${xlabel}</strong></span></div></div>`;
         },
         shadow: false,
         shared: true,
@@ -297,12 +325,12 @@ function StackedColumnChart({
           }
         },
         endOnTick: false,
+        reversedStacks: false,
         lineColor: 'transparent',
         lineWidth: 0,
         max: ymax,
         min: ymin,
         opposite: false,
-        reversedStacks: false,
         startOnTick: false,
         showFirstLabel: true,
         showLastLabel: true,
@@ -311,7 +339,7 @@ function StackedColumnChart({
           enabled: true,
           formatter() {
             // eslint-disable-next-line react/no-this-in-sfc
-            return `${this.total}`;
+            return `${roundNr(this.total, 0)} ${xlabel}`;
           },
           style: {
             color: 'rgba(0, 0, 0, 0.8)',
@@ -320,7 +348,7 @@ function StackedColumnChart({
             fontWeight: 600
           }
         },
-        tickInterval: 0.2,
+        tickInterval: 10,
         title: {
           enabled: true,
           reserveSpace: true,
@@ -358,7 +386,7 @@ function StackedColumnChart({
   );
 }
 
-StackedColumnChart.propTypes = {
+ChartStackedGroupedColumn.propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
   idx: PropTypes.string.isRequired,
   note: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -372,13 +400,13 @@ StackedColumnChart.propTypes = {
   ymin: PropTypes.number
 };
 
-StackedColumnChart.defaultProps = {
+ChartStackedGroupedColumn.defaultProps = {
   note: false,
   subtitle: false,
-  xlabel: 'Year',
+  xlabel: '',
   ylabel: '',
   ymax: undefined,
   ymin: undefined
 };
 
-export default StackedColumnChart;
+export default ChartStackedGroupedColumn;
