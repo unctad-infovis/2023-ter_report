@@ -136,14 +136,14 @@ function StackedColumnChart({
             align: 'center',
             enabled: true,
             style: {
-              color: 'rgba(0, 0, 0, 0.8)',
+              color: '#fff',
               fontFamily: 'Roboto',
-              fontSize: '14px',
-              fontWeight: 700,
+              fontSize: '16px',
+              fontWeight: 400,
               textOutline: '0px solid #fff'
             },
             useHTML: true,
-            verticalAlign: 'bottom'
+            verticalAlign: 'middle'
           },
           events: {
             legendItemClick() {
@@ -184,7 +184,7 @@ function StackedColumnChart({
         rules: [{
           chartOptions: {
             title: {
-              margin: 40
+              margin: 20
             }
           },
           condition: {
@@ -286,7 +286,7 @@ function StackedColumnChart({
         labels: {
           formatter() {
             // eslint-disable-next-line react/no-this-in-sfc
-            return `${this.value}`;
+            return `${this.value.toFixed(1)}`;
           },
           rotation: 0,
           style: {
