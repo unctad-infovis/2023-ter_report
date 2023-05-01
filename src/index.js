@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import Figure1 from './jsx/Figure1.jsx';
 import Figure2 from './jsx/Figure2.jsx';
 import Figure3 from './jsx/Figure3.jsx';
+import Figure4 from './jsx/Figure4.jsx';
 
 let lang = 'en';
 if (window.location.href.includes('/fr/')) {
@@ -30,4 +31,10 @@ const containerFigure3 = document.getElementById('app-root-2023-ter_report_figur
 if (containerFigure3) {
   const root = createRoot(containerFigure3);
   root.render(<Figure3 lang={lang} />);
+}
+
+const containerFigure4 = document.getElementById('app-root-2023-ter_report_figure4');
+if (containerFigure4) {
+  const root = createRoot(containerFigure4);
+  root.render(<Figure4 lang={lang} />);
 }

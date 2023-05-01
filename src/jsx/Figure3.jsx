@@ -48,12 +48,12 @@ function Figure3({ lang }) {
         lang={lang}
         note={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Note:</em> Cross-border refers to purchases sourced from outside the purchaser’s country of residence. Following the transaction, the goods are delivered from overseas to the purchaser’s location.')}
         show_first_label
-        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD estimate, based on national data. ')}
+        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD estimate, based on national data.')}
         subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global e-commerce estimates, 2017–2019, billions of United States dollars')}
         suffix="%"
         title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'E-commerce grows in both domestic and cross-border')}
-        xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '%')}
         xcategories={[2017, 2018, 2019]}
+        xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '%')}
         ylabel=""
         ymax={1.6}
         ymin={0}
