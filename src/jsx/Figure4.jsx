@@ -18,7 +18,7 @@ function Figure4({ lang }) {
 
     return ({
       data: values.map((val, i) => ({
-        color: (i < 6) ? '#009edb' : '#72bf44',
+        color: (i < 7) ? '#009edb' : '#72bf44',
         y: parseFloat(val),
       })).filter(val => !Number.isNaN(val.y)),
       labels: keys.filter(val => val !== 'Name'),
@@ -52,12 +52,14 @@ function Figure4({ lang }) {
         export_title_margin={30}
         note={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Note:</em> ')}
         source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> ')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Subtitle')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Billions of dollars')}
         suffix=""
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Title')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Exports of goods and services in ocean economy roughly equal in total value')}
+        x_axis_labels_offset={-10}
         ymax={350}
         ymin={0}
         ylabel=""
+        y_tick_interval={50}
       />
       )}
     </div>

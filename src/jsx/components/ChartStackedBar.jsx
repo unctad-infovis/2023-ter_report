@@ -1,15 +1,17 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, {
+  useEffect, useCallback, useRef, memo
+} from 'react';
 import PropTypes from 'prop-types';
-
-// https://www.npmjs.com/package/react-is-visible
-import 'intersection-observer';
-import { useIsVisible } from 'react-is-visible';
 
 // https://www.highcharts.com/
 import Highcharts from 'highcharts';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 import highchartsExporting from 'highcharts/modules/exporting';
 import highchartsExportData from 'highcharts/modules/export-data';
+
+// https://www.npmjs.com/package/react-is-visible
+import 'intersection-observer';
+import { useIsVisible } from 'react-is-visible';
 
 // Load helpers.
 import roundNr from '../helpers/RoundNr.js';
@@ -44,12 +46,14 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
   return path;
 };
 
-function BarChart({
-  data, data_decimals, export_title_margin, idx, labels_inside, prefix, note, source, subtitle, suffix, title, x_axis_labels_offset, xlabel, ylabel, ymax, ymin, y_tick_interval
+function StackedBarChart({
+  data, data_decimals, export_title_margin, idx, note, source, standalone, subtitle, suffix, title, xlabel, xlabelrotation, ymax, ymin
 }) {
   const chartRef = useRef();
 
-  const chartHeight = 750;
+  console.log(data);
+
+  const chartHeight = 700;
   const isVisible = useIsVisible(chartRef, { once: true });
   const createChart = useCallback(() => {
     Highcharts.chart(`chartIdx${idx}`, {
@@ -60,7 +64,8 @@ function BarChart({
           color: 'rgba(0, 0, 0, 0.8)',
           fontSize: '14px'
         },
-        text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
+        text: `${source} ${note ? (`<br /><span>${note}</span>`) : ''}`,
+        useHTML: true,
         verticalAlign: 'bottom',
         x: 0
       },
@@ -88,7 +93,7 @@ function BarChart({
             stroke: '#7c7067',
             style: {
               fontFamily: 'Roboto',
-              fontSize: '13px',
+              fontSize: 13,
               fontWeight: 400
             }
           }
@@ -100,7 +105,7 @@ function BarChart({
         },
         type: 'bar'
       },
-      colors: ['#009edb'],
+      colors: ['#009edb', '#72bf44'],
       credits: {
         enabled: false
       },
@@ -111,12 +116,24 @@ function BarChart({
             symbol: 'download',
             symbolFill: '#000'
           }
-        },
-        enabled: true,
-        filename: '2023-unctad'
+        }
       },
       legend: {
-        enabled: false
+        align: 'right',
+        enabled: (data.length > 1),
+        itemDistance: 30,
+        itemStyle: {
+          color: '#000',
+          cursor: 'pointer',
+          fontFamily: 'Roboto',
+          fontSize: '16px',
+          fontWeight: 400
+        },
+        layout: 'horizontal',
+        reversed: false,
+        useHTML: true,
+        verticalAlign: 'top',
+        x: -20
       },
       plotOptions: {
         bar: {
@@ -125,28 +142,22 @@ function BarChart({
           },
           cursor: 'default',
           enableMouseTracking: true,
+          groupPadding: 0.05,
           dataLabels: {
-            align: (labels_inside) ? 'right' : undefined,
-            inside: (labels_inside === true) ? true : undefined,
-            enabled: true,
-            formatter() {
-              // eslint-disable-next-line react/no-this-in-sfc
-              if (this.value > 10000) {
-              // eslint-disable-next-line react/no-this-in-sfc
-                return `${prefix}${formatNr(this.value, ' ')}`;
-              }
-              // eslint-disable-next-line react/no-this-in-sfc
-              return (this.y !== 0) ? `${prefix}${roundNr(this.y, data_decimals).toFixed(data_decimals)}${suffix}` : '';
-            },
-            color: (labels_inside) ? '#fff' : 'rgba(0, 0, 0, 0.8)',
             style: {
+              color: '#fff',
               fontFamily: 'Roboto',
-              fontSize: '18px',
+              fontSize: '13px',
               fontWeight: 400,
-              textOutline: 'none'
+              textOutline: 0
             }
           },
-          pointWidth: 35
+          events: {
+            legendItemClick(e) {
+              e.preventDefault();
+            },
+          },
+          stacking: 'normal'
         }
       },
       responsive: {
@@ -154,38 +165,107 @@ function BarChart({
           chartOptions: {
             legend: {
               layout: 'horizontal'
+            },
+            title: {
+              margin: 0,
+              style: {
+                fontSize: '26px',
+                lineHeight: '30px'
+              }
             }
           },
           condition: {
             maxWidth: 500
           }
+        }, {
+          chartOptions: {
+            chart: {
+              height: chartHeight + 100
+            },
+            legend: {
+              layout: 'horizontal'
+            }
+          },
+          condition: {
+            maxWidth: 450
+          }
+        }, {
+          chartOptions: {
+            chart: {
+              height: chartHeight + 150
+            },
+            legend: {
+              layout: 'horizontal'
+            }
+          },
+          condition: {
+            maxWidth: 350
+          }
         }]
       },
       series: data,
+      xAxis: {
+        accessibility: {
+          description: xlabel
+        },
+        allowDecimals: false,
+        categories: data[0].labels,
+        crosshair: {
+          color: 'rgba(124, 112, 103, 0.2)',
+          width: 1
+        },
+        labels: {
+          allowOverlap: true,
+          rotation: xlabelrotation,
+          style: {
+            color: 'rgba(0, 0, 0, 0.8)',
+            fontFamily: 'Roboto',
+            fontSize: '16px',
+            fontWeight: 400
+          }
+        },
+        lineColor: 'transparent',
+        lineWidth: 0,
+        opposite: false,
+        showFirstLabel: true,
+        showLastLabel: true,
+        tickWidth: 1,
+        title: {
+          enabled: false,
+          style: {
+            color: 'rgba(0, 0, 0, 0.8)',
+            fontFamily: 'Roboto',
+            fontSize: '16px',
+            fontWeight: 400
+          },
+          text: xlabel
+        }
+      },
       subtitle: {
         align: 'left',
         enabled: true,
+        widthAdjust: -144,
         style: {
           color: 'rgba(0, 0, 0, 0.8)',
           fontSize: '16px',
           fontWeight: 400,
           lineHeight: '18px'
         },
-        text: subtitle,
-        widthAdjust: -144,
         x: 100,
+        text: subtitle
       },
       title: {
         align: 'left',
         margin: export_title_margin,
+        widthAdjust: -160,
         style: {
           color: '#000',
           fontSize: '30px',
-          fontWeight: 700
+          fontWeight: 700,
+          lineHeight: '34px'
         },
-        text: title,
-        widthAdjust: -180,
         x: 100,
+        text: title
       },
       tooltip: {
         backgroundColor: '#fff',
@@ -195,39 +275,15 @@ function BarChart({
         crosshairs: false,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          if (this.y === 0) return false;
+          const values = this.points.map(point => [point.series.name, point.y, point.color]);
+          const rows = [];
+          rows.push(values.map(point => `<div style="color: ${point[2]}"><span class="tooltip_label">${(point[0]) ? `${point[0]}: ` : ''}</span><span class="tooltip_value">${roundNr(point[1], data_decimals)} billion USD</span></div>`).join(''));
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row" style="color: ${this.points[0].color}"><span class="tooltip_value">${this.points[0].y} billion USD</span></div></div>`;
+          return `<div class="tooltip_container"><h3 class="tooltip_header">${xlabel} ${this.points[0].key}</h3>${rows}</div>`;
         },
         shadow: false,
         shared: true,
         useHTML: true
-      },
-      xAxis: {
-        accessibility: {
-          description: xlabel
-        },
-        categories: data[0].labels,
-        labels: {
-          allowOverlap: true,
-          align: 'right',
-          formatter: (el) => ((el.value === 'Goods' || el.value === 'Services') ? `<span class="x_axis_heading">${el.value}</span>` : (el.value !== '""') ? el.value : ''),
-          reserveSpace: true,
-          style: {
-            color: 'rgba(0, 0, 0, 0.8)',
-            fontFamily: 'Roboto',
-            fontSize: '14px',
-            fontWeight: 400,
-            textOverflow: 'allow',
-            wordBreak: 'break-all'
-          },
-          y: x_axis_labels_offset
-        },
-        lineColor: 'transparent',
-        tickWidth: 0,
-        title: {
-          text: null
-        }
       },
       yAxis: {
         accessibility: {
@@ -241,11 +297,7 @@ function BarChart({
         gridLineWidth: 1,
         gridLineDashStyle: 'shortdot',
         labels: {
-          formatter() {
-            // eslint-disable-next-line react/no-this-in-sfc
-            return `${prefix}${this.value}`;
-          },
-          rotation: 0,
+          formatter: (el) => `${formatNr(el.value)}${suffix}`,
           style: {
             color: 'rgba(0, 0, 0, 0.8)',
             fontFamily: 'Roboto',
@@ -259,18 +311,28 @@ function BarChart({
         max: ymax,
         min: ymin,
         opposite: false,
-        startOnTick: false,
-        plotLines: [{
-          color: 'rgba(124, 112, 103, 0.6)',
-          value: 0,
-          width: 1
-        }],
+        reversedStacks: false,
         showFirstLabel: true,
         showLastLabel: true,
-        tickInterval: y_tick_interval,
+        stackLabels: {
+          enabled: true,
+          formatter() {
+            // eslint-disable-next-line react/no-this-in-sfc
+            return `${roundNr(this.total, 0)}${suffix}`;
+          },
+          style: {
+            color: '#000',
+            fontSize: '16px',
+            fontWeight: 400,
+            textOutline: 'none'
+          },
+          y: 0
+        },
+        startOnTick: false,
+        tickInterval: ymax / 5,
         title: {
           enabled: true,
-          reserveSpace: true,
+          reserveSpace: false,
           rotation: 0,
           style: {
             color: 'rgba(0, 0, 0, 0.8)',
@@ -278,15 +340,14 @@ function BarChart({
             fontSize: '16px',
             fontWeight: 400
           },
-          text: ylabel,
-          verticalAlign: 'top',
+          text: null,
+          y: 10
         },
         type: 'linear'
       }
-    }, () => {
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [export_title_margin, data, data_decimals, idx, labels_inside, note, prefix, source, subtitle, suffix, title, x_axis_labels_offset, xlabel, ylabel, ymax, ymin, y_tick_interval]);
+  }, [idx, data, data_decimals, export_title_margin, note, source, subtitle, suffix, title, xlabel, xlabelrotation, ymax, ymin]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -297,7 +358,7 @@ function BarChart({
   }, [createChart, isVisible]);
 
   return (
-    <div className="chart_container" style={{ minHeight: chartHeight }}>
+    <div className="chart_container" style={(standalone) ? { minHeight: chartHeight } : { minHeight: chartHeight }}>
       <div ref={chartRef}>
         {(isVisible) && (<div className="chart" id={`chartIdx${idx}`} />)}
       </div>
@@ -306,39 +367,33 @@ function BarChart({
   );
 }
 
-BarChart.propTypes = {
+StackedBarChart.propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
   data_decimals: PropTypes.number.isRequired,
   export_title_margin: PropTypes.number,
   idx: PropTypes.string.isRequired,
-  labels_inside: PropTypes.bool,
   note: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  prefix: PropTypes.string,
   source: PropTypes.string.isRequired,
+  standalone: PropTypes.bool,
   subtitle: PropTypes.string,
   suffix: PropTypes.string,
   title: PropTypes.string.isRequired,
-  x_axis_labels_offset: PropTypes.number,
   xlabel: PropTypes.string,
-  ylabel: PropTypes.string,
+  xlabelrotation: PropTypes.number,
   ymax: PropTypes.number,
-  ymin: PropTypes.number,
-  y_tick_interval: PropTypes.number
+  ymin: PropTypes.number
 };
 
-BarChart.defaultProps = {
-  export_title_margin: 0,
-  labels_inside: false,
+StackedBarChart.defaultProps = {
+  export_title_margin: 20,
   note: false,
-  prefix: '',
+  standalone: false,
   subtitle: false,
   suffix: '',
-  x_axis_labels_offset: undefined,
   xlabel: '',
-  ylabel: '',
+  xlabelrotation: 0,
   ymax: undefined,
-  ymin: undefined,
-  y_tick_interval: undefined
+  ymin: undefined
 };
 
-export default BarChart;
+export default memo(StackedBarChart);
