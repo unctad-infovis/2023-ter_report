@@ -8,13 +8,13 @@ import ChartLine from './components/ChartLine.jsx';
 
 import '../styles/styles.less';
 
-function Figure7({ lang }) {
+function Figure8({ lang }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
   const cleanData = (data) => data.map(el => {
     const labels = Object.keys(el).filter(val => val !== 'Name').map(val => Date.UTC(parseInt(val, 10), 0, 1));
-    const values = Object.values(el).map(val => (parseFloat(val)) / 1000000000).filter(val => !Number.isNaN(val));
+    const values = Object.values(el).map(val => ((parseFloat(val) * 1000) / 1000000000)).filter(val => !Number.isNaN(val));
 
     return ({
       data: values.map((e, i) => ({
@@ -27,7 +27,7 @@ function Figure7({ lang }) {
   });
 
   useEffect(() => {
-    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure7_${lang}.csv`;
+    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure8_${lang}.csv`;
     try {
       fetch(data_file)
         .then((response) => {
@@ -47,19 +47,19 @@ function Figure7({ lang }) {
       {dataFigure && (
       <ChartLine
         data={dataFigure}
-        idx="7"
+        idx="8"
         lang={lang}
         line_width={5}
         note={lang === 'fr' ? '<em>Note:</em>' : (lang === 'es' ? '<em>Nota:</em>' : '<em>Note:</em> ')}
         show_first_label
         source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> ')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fisheries support, 2010–2020, billions of dollars')}
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fishing subsidies are growing again after declining for 5 years in a row')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Farmed seaweeds value, 2010–2020, billion dollars')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Value of seaweed farming has exploded in the 21st century')}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""
-        ymax={15}
+        ymax={20}
         ymin={0}
-        ytickinterval={5}
+        ytickinterval={2}
       />
       )}
       <noscript>Your browser does not support JavaScript!</noscript>
@@ -67,12 +67,12 @@ function Figure7({ lang }) {
   );
 }
 
-Figure7.propTypes = {
+Figure8.propTypes = {
   lang: PropTypes.string
 };
 
-Figure7.defaultProps = {
+Figure8.defaultProps = {
   lang: 'en'
 };
 
-export default Figure7;
+export default Figure8;

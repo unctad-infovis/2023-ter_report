@@ -9,6 +9,8 @@ import Figure4 from './jsx/Figure4.jsx';
 import Figure5 from './jsx/Figure5.jsx';
 import Figure6 from './jsx/Figure6.jsx';
 import Figure7 from './jsx/Figure7.jsx';
+import Figure8 from './jsx/Figure8.jsx';
+import Figure9 from './jsx/Figure9.jsx';
 
 let lang = 'en';
 if (window.location.href.includes('/fr/')) {
@@ -58,4 +60,16 @@ const containerFigure7 = document.getElementById('app-root-2023-ter_report_figur
 if (containerFigure7) {
   const root = createRoot(containerFigure7);
   root.render(<Figure7 lang={lang} />);
+}
+
+const containerFigure8 = document.getElementById('app-root-2023-ter_report_figure8');
+if (containerFigure8) {
+  const root = createRoot(containerFigure8);
+  root.render(<Figure8 lang={lang} />);
+}
+
+const containerFigure9 = document.getElementById('app-root-2023-ter_report_figure9');
+if (containerFigure9) {
+  const root = createRoot(containerFigure9);
+  root.render(<Figure9 lang={lang} />);
 }

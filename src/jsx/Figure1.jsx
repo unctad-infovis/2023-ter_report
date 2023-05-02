@@ -54,6 +54,7 @@ function Figure1({ lang }) {
         show_first_label
         source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> UNCTAD calculation based on ITU World Telecommunication/ICT Indicators Database, Jan 2023.')}
         subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Share of population using the Internet, 2005–2022')}
+        suffix="%"
         title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Internet usage in developing world in catching up slowly')}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""

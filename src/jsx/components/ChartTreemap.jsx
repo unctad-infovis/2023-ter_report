@@ -6,6 +6,7 @@ import Highcharts from 'highcharts';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 import highchartsExporting from 'highcharts/modules/exporting';
 import highchartsExportData from 'highcharts/modules/export-data';
+import highchartsTreemap from 'highcharts/modules/treemap';
 
 // https://www.npmjs.com/package/react-is-visible
 import 'intersection-observer';
@@ -16,6 +17,7 @@ import roundNr from '../helpers/RoundNr.js';
 highchartsAccessibility(Highcharts);
 highchartsExporting(Highcharts);
 highchartsExportData(Highcharts);
+highchartsTreemap(Highcharts);
 
 Highcharts.setOptions({
   lang: {
@@ -42,13 +44,13 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
   return path;
 };
 
-function LineChart({
-  allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, xlabel, ymax, ymin, ytickinterval
+function TreemapChart({
+  allow_decimals, data, idx, note, show_first_label, source, subtitle, title
 }) {
-  data = data.filter((val) => (val.name !== ''));
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
-  const chartHeight = 700;
+
+  const chartHeight = 650;
   const createChart = useCallback(() => {
     Highcharts.chart(`chartIdx${idx}`, {
       caption: {
@@ -59,8 +61,7 @@ function LineChart({
           fontFamily: 'Roboto',
           fontSize: '14px'
         },
-        text: `${source} ${note ? (`<br /><span>${note}</span>`) : ''}`,
-        useHTML: true,
+        text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
         verticalAlign: 'bottom',
         x: 0
       },
@@ -72,7 +73,6 @@ function LineChart({
           }
         },
         height: chartHeight,
-        marginRight: 80,
         resetZoomButton: {
           theme: {
             fill: '#fff',
@@ -100,27 +100,25 @@ function LineChart({
           fontFamily: 'Roboto',
           fontWeight: 400
         },
-        type: 'line',
-        zoomType: 'x'
+        type: 'treemap'
       },
-      colors: ['#009edb', '#72BF44', '#A05FB4'],
+      colors: ['#006846', '#72bf44', '#009edb', '#004987'],
       credits: {
         enabled: false
       },
       exporting: {
+        enabled: true,
         buttons: {
           contextButton: {
             menuItems: ['viewFullscreen', 'separator', 'downloadPNG', 'downloadPDF', 'separator', 'downloadCSV'],
             symbol: 'download',
             symbolFill: '#000'
           }
-        },
-        enabled: true,
-        filename: '2023-unctad'
+        }
       },
       legend: {
         align: 'right',
-        enabled: (data.length > 1),
+        enabled: true,
         itemDistance: 20,
         itemStyle: {
           color: '#000',
@@ -133,57 +131,31 @@ function LineChart({
         verticalAlign: 'top'
       },
       plotOptions: {
-        line: {
-          animation: {
-            duration: 3000,
-          },
-          cursor: 'pointer',
+        treemap: {
+          alternateStartingDirection: true,
+          layoutAlgorithm: 'sliceAndDice',
+          layoutStartingDirection: 'vertical',
           dataLabels: {
-            allowOverlap: false,
-            enabled: false,
             formatter() {
               // eslint-disable-next-line react/no-this-in-sfc
-              return `<span>${roundNr(this.y, 0).toLocaleString('en-US')}</div>`;
-            },
-            style: {
-              color: 'rgba(0, 0, 0, 0.8)',
-              fontFamily: 'Roboto',
-              fontSize: '18px',
-              fontWeight: 400,
-              textOutline: '2px solid #fff'
+              return (this.key !== 'Other Natural Fibres') ? `${this.key}<br /><strong>$${roundNr(this.point.value).toLocaleString('en-US')}</strong>` : this.key;
             }
           },
-          events: {
-            legendItemClick() {
-              return false;
-            },
-            mouseOver() {
-              return false;
-            }
-          },
-          selected: true,
-          lineWidth: line_width,
-          marker: {
-            enabled: false,
-            radius: 0,
-            states: {
-              hover: {
-                animation: false,
-                enabled: false,
-                radius: 8
-              }
-            },
-            symbol: 'circle'
-          },
-          states: {
-            hover: {
-              halo: {
-                size: 0
-              },
-              enabled: false,
-              lineWidth: line_width,
-            }
-          }
+          levels: [{
+            borderColor: '#000',
+            borderWidth: 2,
+            level: 1
+          }, {
+            borderColor: '#000',
+            borderWidth: 2,
+            level: 2
+          }, {
+            borderColor: 'rgba(0, 0, 0, 0.5)',
+            borderWidth: 1,
+            layoutAlgorithm: 'stripes',
+            layoutStartingDirection: 'horizontal',
+            level: 3
+          }]
         }
       },
       responsive: {
@@ -191,6 +163,11 @@ function LineChart({
           chartOptions: {
             title: {
               margin: 20
+            },
+            plotOptions: {
+              packedbubble: {
+                maxSize: '200%'
+              }
             }
           },
           condition: {
@@ -205,24 +182,14 @@ function LineChart({
               layout: 'horizontal'
             },
             title: {
-              margin: 10,
               style: {
                 fontSize: '26px',
                 lineHeight: '30px'
               }
-            },
-            yAxis: [{
-              title: {
-                text: null
-              }
-            }, {
-              title: {
-                text: null
-              }
-            }]
+            }
           },
           condition: {
-            maxWidth: 450
+            maxWidth: 500
           }
         }, {
           chartOptions: {
@@ -235,7 +202,9 @@ function LineChart({
           }
         }]
       },
-      series: data,
+      series: [{
+        data
+      }],
       subtitle: {
         align: 'left',
         enabled: true,
@@ -246,35 +215,32 @@ function LineChart({
           lineHeight: '18px'
         },
         text: subtitle,
-        widthAdjust: -100,
-        x: 100
+        useHTML: true,
+        x: 100,
+        widthAdjust: -100
       },
       title: {
         align: 'left',
-        margin: 40,
+        margin: 20,
         style: {
           color: '#000',
           fontSize: '30px',
           fontWeight: 700,
           lineHeight: '34px'
         },
+        x: 100,
         text: title,
-        widthAdjust: -160,
-        x: 100
+        widthAdjust: -144
       },
       tooltip: {
         backgroundColor: '#fff',
         borderColor: '#ccc',
         borderRadius: 0,
         borderWidth: 1,
-        crosshairs: true,
+        crosshairs: false,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          const values = this.points.filter(point => point.series.name !== '').map(point => [point.series.name.split(' (')[0], point.y]);
-          const rows = [];
-          rows.push(values.map(point => `<div><span class="tooltip_label">${(point[0]) ? `${point[0]}: ` : ''}</span> <span class="tooltip_value">${roundNr(point[1], 1).toFixed(1).toLocaleString('en-US')}${suffix}</span></div>`).join(''));
-          // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">${xlabel} ${(new Date(this.x)).getFullYear()}</h3><div class="tooltip_row">${rows}</div></div>`;
+          return `<div class="tooltip_container"><div class="tooltip_header">${this.key}</div><div><span class="tooltip_label"></span> <span class="tooltip_value">$${roundNr(this.point.value, 0).toLocaleString('en-US')}</span></div></div>`;
         },
         shadow: false,
         shared: true,
@@ -282,10 +248,6 @@ function LineChart({
       },
       xAxis: {
         allowDecimals: false,
-        crosshair: {
-          color: '#ccc',
-          width: 1
-        },
         labels: {
           enabled: true,
           style: {
@@ -300,10 +262,9 @@ function LineChart({
         lineColor: '#ccc',
         lineWidth: 0,
         opposite: false,
-        showLastLabel: true,
         tickLength: 5,
         tickWidth: 1,
-        type: 'datetime',
+        type: 'linear',
         title: {
           enabled: true,
           style: {
@@ -312,10 +273,10 @@ function LineChart({
             fontSize: '16px',
             fontWeight: 400
           },
-          text: xlabel
+          text: ''
         }
       },
-      yAxis: {
+      yAxis: [{
         allowDecimals: allow_decimals,
         gridLineColor: 'rgba(124, 112, 103, 0.2)',
         gridLineDashStyle: 'shortdot',
@@ -323,7 +284,7 @@ function LineChart({
         labels: {
           reserveSpace: true,
           style: {
-            color: '#000',
+            color: 'rgba(0, 0, 0, 0.8)',
             fontFamily: 'Roboto',
             fontSize: '16px',
             fontWeight: 400
@@ -331,18 +292,14 @@ function LineChart({
         },
         lineColor: 'transparent',
         lineWidth: 0,
-        max: ymax,
-        min: ymin,
         opposite: false,
         showFirstLabel: show_first_label,
         showLastLabel: true,
-        tickAmount: 4,
-        tickInterval: ytickinterval,
         title: {
-          enabled: false,
+          enabled: true,
           reserveSpace: true,
           style: {
-            color: '#000',
+            color: 'rgba(0, 0, 0, 0.8)',
             fontFamily: 'Roboto',
             fontSize: '16px',
             fontWeight: 400
@@ -350,10 +307,10 @@ function LineChart({
           text: ''
         },
         type: 'linear'
-      }
+      }]
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, xlabel, ymax, ymin, ytickinterval]);
+  }, [allow_decimals, data, idx, note, show_first_label, source, subtitle, title]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -373,34 +330,22 @@ function LineChart({
   );
 }
 
-LineChart.propTypes = {
+TreemapChart.propTypes = {
   allow_decimals: PropTypes.bool,
   data: PropTypes.instanceOf(Array).isRequired,
   idx: PropTypes.string.isRequired,
-  // lang: PropTypes.string.isRequired,
-  line_width: PropTypes.number,
   note: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   show_first_label: PropTypes.bool,
   source: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  suffix: PropTypes.string,
   title: PropTypes.string.isRequired,
-  xlabel: PropTypes.string.isRequired,
-  ymin: PropTypes.number,
-  ymax: PropTypes.number,
-  ytickinterval: PropTypes.number
 };
 
-LineChart.defaultProps = {
-  allow_decimals: false,
-  line_width: 3,
+TreemapChart.defaultProps = {
+  allow_decimals: true,
   note: false,
   show_first_label: true,
   subtitle: false,
-  suffix: '',
-  ymin: undefined,
-  ymax: undefined,
-  ytickinterval: 10
 };
 
-export default LineChart;
+export default TreemapChart;
