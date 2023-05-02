@@ -5,6 +5,50 @@
 .app-root-2023-ter_report .app {
   font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   @import 'colors.less';
+  .buttons_container {
+    max-width: 800px;
+    vertical-align: middle;
+    margin: auto auto 20px auto;
+    .button_label {
+      text-transform: uppercase;
+      display: inline-block;
+      font-size: 14px;
+      margin-right: 5px;
+      font-weight: 700;
+    }
+    .button_container {
+      display: inline-block;
+      margin-right: 10px;
+      button {
+        background-color: @ungrey;
+        border: 0;
+        cursor: pointer;
+        font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        outline: none;
+        padding: 7px 15px;
+        user-select: none;
+        &:hover {
+          opacity: 0.75;
+        }
+        &.active {
+          background-color: @unblue;
+          color: #fff;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  .chart_wrapper {
+    display: none;
+    opacity: 0;
+    &.active {
+      display: block;
+      opacity: 1;
+      transition-duration: 500ms;
+      transition-property: opacity;
+    }
+  }
   .chart_container {
     max-width: 800px;
     @media all and (max-width: 991px) {

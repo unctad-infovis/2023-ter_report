@@ -51,8 +51,6 @@ function StackedBarChart({
 }) {
   const chartRef = useRef();
 
-  console.log(data);
-
   const chartHeight = 700;
   const isVisible = useIsVisible(chartRef, { once: true });
   const createChart = useCallback(() => {
@@ -204,43 +202,6 @@ function StackedBarChart({
         }]
       },
       series: data,
-      xAxis: {
-        accessibility: {
-          description: xlabel
-        },
-        allowDecimals: false,
-        categories: data[0].labels,
-        crosshair: {
-          color: 'rgba(124, 112, 103, 0.2)',
-          width: 1
-        },
-        labels: {
-          allowOverlap: true,
-          rotation: xlabelrotation,
-          style: {
-            color: 'rgba(0, 0, 0, 0.8)',
-            fontFamily: 'Roboto',
-            fontSize: '16px',
-            fontWeight: 400
-          }
-        },
-        lineColor: 'transparent',
-        lineWidth: 0,
-        opposite: false,
-        showFirstLabel: true,
-        showLastLabel: true,
-        tickWidth: 1,
-        title: {
-          enabled: false,
-          style: {
-            color: 'rgba(0, 0, 0, 0.8)',
-            fontFamily: 'Roboto',
-            fontSize: '16px',
-            fontWeight: 400
-          },
-          text: xlabel
-        }
-      },
       subtitle: {
         align: 'left',
         enabled: true,
@@ -284,6 +245,43 @@ function StackedBarChart({
         shadow: false,
         shared: true,
         useHTML: true
+      },
+      xAxis: {
+        accessibility: {
+          description: xlabel
+        },
+        allowDecimals: false,
+        categories: data[0].labels,
+        crosshair: {
+          color: 'transparent',
+          width: 1
+        },
+        labels: {
+          allowOverlap: true,
+          rotation: xlabelrotation,
+          style: {
+            color: 'rgba(0, 0, 0, 0.8)',
+            fontFamily: 'Roboto',
+            fontSize: '14px',
+            fontWeight: 400
+          }
+        },
+        lineColor: 'transparent',
+        lineWidth: 0,
+        opposite: false,
+        showFirstLabel: true,
+        showLastLabel: true,
+        tickWidth: 1,
+        title: {
+          enabled: false,
+          style: {
+            color: 'rgba(0, 0, 0, 0.8)',
+            fontFamily: 'Roboto',
+            fontSize: '16px',
+            fontWeight: 400
+          },
+          text: xlabel
+        }
       },
       yAxis: {
         accessibility: {
