@@ -41,7 +41,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function StackedColumnChart({
-  data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin
+  data, idx, note, source, suffix, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin
 }) {
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
@@ -238,7 +238,7 @@ function StackedColumnChart({
         crosshairs: true,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">Domestic:</span> <span class="tooltip_value">${this.points[0].y}</span></div><div class="tooltip_row"><span class="tooltip_label">Cross-border:</span> <span class="tooltip_value">${this.points[1].y}</span></div></div>`;
+          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row" style="color: ${this.points[0].color}"><span class="tooltip_label">Domestic:</span> <span class="tooltip_value">${this.points[0].y}${suffix}</span></div><div class="tooltip_row" style="color: ${this.points[1].color}"><span class="tooltip_label">Cross-border:</span> <span class="tooltip_value">${this.points[1].y}${suffix}</span></div></div>`;
         },
         shadow: false,
         shared: true,
@@ -338,7 +338,7 @@ function StackedColumnChart({
       }
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin]);
+  }, [data, idx, note, source, subtitle, suffix, title, xcategories, xlabel, ylabel, ymax, ymin]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -363,6 +363,7 @@ StackedColumnChart.propTypes = {
   idx: PropTypes.string.isRequired,
   note: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   source: PropTypes.string.isRequired,
+  suffix: PropTypes.string,
   subtitle: PropTypes.string,
   title: PropTypes.string.isRequired,
   xcategories: PropTypes.instanceOf(Array).isRequired,
@@ -375,6 +376,7 @@ StackedColumnChart.propTypes = {
 StackedColumnChart.defaultProps = {
   note: false,
   subtitle: false,
+  suffix: '',
   xlabel: 'Year',
   ylabel: '',
   ymax: undefined,

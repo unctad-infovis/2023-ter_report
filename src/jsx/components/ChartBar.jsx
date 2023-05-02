@@ -136,7 +136,7 @@ function BarChart({
                 return `${prefix}${formatNr(this.value, ' ')}`;
               }
               // eslint-disable-next-line react/no-this-in-sfc
-              return (this.y !== 0) ? (suffix === '%') ? `${prefix}${formatNr(roundNr(this.y, data_decimals).toFixed(data_decimals), ' ', '', '', false, true)}${suffix}` : `${prefix}${roundNr(this.y, data_decimals).toFixed(data_decimals)}${suffix}` : '';
+              return (this.y !== 0) ? (suffix === '%') ? `${prefix}${formatNr(roundNr(this.y, data_decimals).toFixed(data_decimals), ' ', '', '', false, true)}${suffix}` : `${prefix}${roundNr(this.y, data_decimals).toFixed(data_decimals)}` : '';
             },
             color: (labels_inside) ? '#fff' : 'rgba(0, 0, 0, 0.8)',
             style: {
@@ -197,7 +197,7 @@ function BarChart({
           // eslint-disable-next-line react/no-this-in-sfc
           if (this.y === 0) return false;
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row" style="color: ${this.points[0].color}"><span class="tooltip_value">${this.points[0].y} billion USD</span></div></div>`;
+          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row" style="color: ${this.points[0].color}"><span class="tooltip_value">${(suffix === '%') ? `${prefix}${formatNr(roundNr(this.points[0].y, data_decimals).toFixed(data_decimals), ' ', '', '', false, true)}` : `${prefix}${roundNr(this.points[0].y, data_decimals).toFixed(data_decimals)}`}${suffix}</span></div></div>`;
         },
         shadow: false,
         shared: true,
@@ -261,9 +261,10 @@ function BarChart({
         opposite: false,
         startOnTick: false,
         plotLines: [{
-          color: 'rgba(124, 112, 103, 0.6)',
-          value: 0,
-          width: 1
+          color: 'rgba(124, 112, 103, 0.2)',
+          value: 0.1,
+          width: 1,
+          zIndex: 9
         }],
         showFirstLabel: true,
         showLastLabel: true,

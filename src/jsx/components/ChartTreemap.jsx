@@ -13,6 +13,7 @@ import 'intersection-observer';
 import { useIsVisible } from 'react-is-visible';
 
 import roundNr from '../helpers/RoundNr.js';
+import formatNr from '../helpers/FormatNr.js';
 
 highchartsAccessibility(Highcharts);
 highchartsExporting(Highcharts);
@@ -138,7 +139,7 @@ function TreemapChart({
           dataLabels: {
             formatter() {
               // eslint-disable-next-line react/no-this-in-sfc
-              return (this.key !== 'Other Natural Fibres') ? `${this.key}<br /><strong>$${roundNr(this.point.value).toLocaleString('en-US')}</strong>` : this.key;
+              return (this.key !== 'Other Natural Fibres') ? `${this.key}<br /><strong>$${formatNr(roundNr(this.point.value), ' ')}</strong>` : this.key;
             }
           },
           levels: [{
@@ -240,7 +241,7 @@ function TreemapChart({
         crosshairs: false,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><div class="tooltip_header">${this.key}</div><div><span class="tooltip_label"></span> <span class="tooltip_value">$${roundNr(this.point.value, 0).toLocaleString('en-US')}</span></div></div>`;
+          return `<div class="tooltip_container"><div class="tooltip_header">${this.key}</div><div><span class="tooltip_label"></span> <span class="tooltip_value">$${formatNr(roundNr(this.point.value, 0), ' ')}</span></div></div>`;
         },
         shadow: false,
         shared: true,

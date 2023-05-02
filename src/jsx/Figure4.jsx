@@ -53,7 +53,7 @@ function Figure4({ lang }) {
         note={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Note:</em> ')}
         source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> ')}
         subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Exports per category in ocean economy, goods and services, billions of dollars')}
-        suffix=""
+        suffix=" billion USD"
         title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Exports of goods and services in ocean economy roughly equal in total value')}
         x_axis_labels_offset={-10}
         ymax={350}

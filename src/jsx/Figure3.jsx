@@ -50,7 +50,7 @@ function Figure3({ lang }) {
         show_first_label
         source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD estimate, based on national data.')}
         subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global e-commerce estimates, 2017–2019, billions of United States dollars')}
-        suffix="%"
+        suffix=" billion USD"
         title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'E-commerce grows in both domestic and cross-border')}
         xcategories={[2017, 2018, 2019]}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '%')}

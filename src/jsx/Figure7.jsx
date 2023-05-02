@@ -54,6 +54,7 @@ function Figure7({ lang }) {
         show_first_label
         source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> ')}
         subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fisheries support, 2010–2020, billions of dollars')}
+        suffix=" billion USD"
         title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fishing subsidies are growing again after declining for 5 years in a row')}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""

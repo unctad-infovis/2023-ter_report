@@ -57,7 +57,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 }(Highcharts));
 
 function ChartStackedGroupedColumn({
-  data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin
+  data, idx, note, source, subtitle, suffix, title, xcategories, xlabel, ylabel, ymax, ymin
 }) {
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
@@ -266,7 +266,7 @@ function ChartStackedGroupedColumn({
         crosshairs: true,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">Male</span><br /><span class="tooltip_value">2020: <strong>${roundNr(this.points[0].y, 0)}${xlabel}</strong></span><br /><span class="tooltip_value">2021: <strong>${roundNr(this.points[0].y + this.points[2].y, 0)}${xlabel}</strong></span><br /><span class="tooltip_value">2022: <strong>${roundNr(this.points[0].y + this.points[2].y + this.points[4].y, 0)}${xlabel}</strong></span></div><div class="tooltip_row"><span class="tooltip_label">Female</span><br /><span class="tooltip_value">2020: <strong>${roundNr(this.points[1].y, 0)}${xlabel}</strong></span><br /><span class="tooltip_value">2021: <strong>${roundNr(this.points[1].y + this.points[3].y, 0)}${xlabel}</strong></span><br /><span class="tooltip_value">2022: <strong>${roundNr(this.points[1].y + this.points[3].y + this.points[5].y, 0)}${xlabel}</strong></span></div></div>`;
+          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">Male</span><br /><span class="tooltip_value">2020: <strong>${roundNr(this.points[0].y, 0)}${suffix}</strong></span><br /><span class="tooltip_value">2021: <strong>${roundNr(this.points[0].y + this.points[2].y, 0)}${suffix}</strong></span><br /><span class="tooltip_value">2022: <strong>${roundNr(this.points[0].y + this.points[2].y + this.points[4].y, 0)}${suffix}</strong></span></div><div class="tooltip_row"><span class="tooltip_label">Female</span><br /><span class="tooltip_value">2020: <strong>${roundNr(this.points[1].y, 0)}${suffix}</strong></span><br /><span class="tooltip_value">2021: <strong>${roundNr(this.points[1].y + this.points[3].y, 0)}${suffix}</strong></span><br /><span class="tooltip_value">2022: <strong>${roundNr(this.points[1].y + this.points[3].y + this.points[5].y, 0)}${suffix}</strong></span></div></div>`;
         },
         shadow: false,
         shared: true,
@@ -366,7 +366,7 @@ function ChartStackedGroupedColumn({
       }
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin]);
+  }, [data, idx, note, source, subtitle, suffix, title, xcategories, xlabel, ylabel, ymax, ymin]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -392,6 +392,7 @@ ChartStackedGroupedColumn.propTypes = {
   note: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   source: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
+  suffix: PropTypes.string,
   title: PropTypes.string.isRequired,
   xcategories: PropTypes.instanceOf(Array).isRequired,
   xlabel: PropTypes.string,
@@ -403,6 +404,7 @@ ChartStackedGroupedColumn.propTypes = {
 ChartStackedGroupedColumn.defaultProps = {
   note: false,
   subtitle: false,
+  suffix: false,
   xlabel: '',
   ylabel: '',
   ymax: undefined,
