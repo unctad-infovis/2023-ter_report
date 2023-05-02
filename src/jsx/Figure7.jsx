@@ -14,7 +14,7 @@ function Figure1({ lang }) {
 
   const cleanData = (data) => data.map(el => {
     const labels = Object.keys(el).filter(val => val !== 'Name').map(val => Date.UTC(parseInt(val, 10), 0, 1));
-    const values = Object.values(el).map(val => (parseFloat(val))).filter(val => !Number.isNaN(val));
+    const values = Object.values(el).map(val => (parseFloat(val)) / 1000000000).filter(val => !Number.isNaN(val));
 
     return ({
       data: values.map((e, i) => ({
@@ -27,7 +27,7 @@ function Figure1({ lang }) {
   });
 
   useEffect(() => {
-    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure1_${lang}.csv`;
+    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure7_${lang}.csv`;
     try {
       fetch(data_file)
         .then((response) => {
@@ -47,18 +47,19 @@ function Figure1({ lang }) {
       {dataFigure && (
       <ChartLine
         data={dataFigure}
-        idx="1"
+        idx="7"
         lang={lang}
         line_width={5}
-        note={lang === 'fr' ? '<em>Note:</em>' : (lang === 'es' ? '<em>Nota:</em>' : '<em>Note:</em> Internet users are individuals who have used the Internet (from any location) in the last three months. The Internet can be used via a computer, mobile phone, personal digital assistant, games machine, digital TV, etc. Time series data are not yet available for enough developing countries to allow the calculation of group averages for 2022, but ITU forecasts are used.')}
+        note={lang === 'fr' ? '<em>Note:</em>' : (lang === 'es' ? '<em>Nota:</em>' : '<em>Note:</em> ')}
         show_first_label
-        source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> UNCTAD calculation based on ITU World Telecommunication/ICT Indicators Database, Jan 2023.')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Share of population using the Internet, 2005–2022')}
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Internet usage in developing world in catching up slowly')}
+        source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> ')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fisheries support, 2010–2020, billions of dollars')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fishing subsidies are growing again after declining for 5 years in a row')}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""
-        ymax={100}
+        ymax={15}
         ymin={0}
+        ytickinterval={5}
       />
       )}
       <noscript>Your browser does not support JavaScript!</noscript>

@@ -60,7 +60,7 @@ function BarChart({
           color: 'rgba(0, 0, 0, 0.8)',
           fontSize: '14px'
         },
-        text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
+        text: `${source} ${note ? (`<br /><span>${note}</span>`) : ''}`,
         verticalAlign: 'bottom',
         x: 0
       },
@@ -68,7 +68,7 @@ function BarChart({
         events: {
           load() {
             // eslint-disable-next-line react/no-this-in-sfc
-            this.renderer.image('https://unctad.org/sites/default/files/2022-11/unctad_logo.svg', 5, 15, 80, 100).add();
+            this.renderer.image('https://storage.unctad.org/2023-tdr_report_update/assets/img/unctad_logo.svg', 5, 15, 80, 100).add();
           }
         },
         height: chartHeight,
@@ -136,7 +136,7 @@ function BarChart({
                 return `${prefix}${formatNr(this.value, ' ')}`;
               }
               // eslint-disable-next-line react/no-this-in-sfc
-              return (this.y !== 0) ? `${prefix}${roundNr(this.y, data_decimals).toFixed(data_decimals)}${suffix}` : '';
+              return (this.y !== 0) ? (suffix === '%') ? `${prefix}${formatNr(roundNr(this.y, data_decimals).toFixed(data_decimals), ' ', '', '', false, true)}${suffix}` : `${prefix}${roundNr(this.y, data_decimals).toFixed(data_decimals)}${suffix}` : '';
             },
             color: (labels_inside) ? '#fff' : 'rgba(0, 0, 0, 0.8)',
             style: {
