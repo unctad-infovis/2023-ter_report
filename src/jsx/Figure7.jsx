@@ -52,7 +52,7 @@ function Figure7({ lang }) {
         line_width={5}
         note={lang === 'fr' ? '<em>Note:</em>' : (lang === 'es' ? '<em>Nota:</em>' : '<em>Note:</em> ')}
         show_first_label
-        source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> ')}
+        source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> https://stats.oecd.org/Index.aspx?datasetcode=FISH_FSE')}
         subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fisheries support, 2010–2020, billions of dollars')}
         suffix=" billion USD"
         title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fishing subsidies are growing again after declining for 5 years in a row')}
