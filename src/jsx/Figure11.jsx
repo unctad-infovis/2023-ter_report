@@ -52,9 +52,9 @@ function Figure11({ lang }) {
         idx="11"
         labels
         source="UNCTAD calculations."
-        subtitle="Only 1.6% of total Official Development Assistance was directed to the ocean economy from 2013 to 2018"
+        subtitle="Only 1.6% of total Official Development Assistance was directed to the ocean economy from 2013 to 2018"
         tick_interval={2}
-        title="Official development assistance donut chart"
+        title="The least funded sustainable development goal"
         xlabel=""
       />
       )}
