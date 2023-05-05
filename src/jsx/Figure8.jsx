@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Load helpers.
 // import { transpose } from 'csv-transpose';
 import CSVtoJSON from './helpers/CSVtoJSON.js';
-import ChartLine from './components/ChartLine.jsx';
+import ChartLineTwoAxis from './components/ChartLineTwoAxis.jsx';
 
 import '../styles/styles.less';
 
@@ -12,17 +12,20 @@ function Figure8({ lang }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
-  const cleanData = (data) => data.map(el => {
+  const cleanData = (data) => data.map((el, i) => {
     const labels = Object.keys(el).filter(val => val !== 'Name').map(val => Date.UTC(parseInt(val, 10), 0, 1));
     const values = Object.values(el).map(val => ((parseFloat(val) * 1000) / 1000000000)).filter(val => !Number.isNaN(val));
 
     return ({
-      data: values.map((e, i) => ({
-        x: labels[i],
-        y: e
+      data: values.map((e, j) => ({
+        x: labels[j],
+        y: e,
+        dataLabels: {
+          y: (i === 0 && j === 0) ? 40 : (i === 1 && j === 0) ? -10 : (i === 0) ? 40 : -10
+        }
       })),
       name: el.Name,
-      yAxis: 0
+      yAxis: i
     });
   });
 
@@ -45,7 +48,7 @@ function Figure8({ lang }) {
   return (
     <div className="app">
       {dataFigure && (
-      <ChartLine
+      <ChartLineTwoAxis
         data={dataFigure}
         idx="8"
         lang={lang}
@@ -53,14 +56,14 @@ function Figure8({ lang }) {
         note={false}
         show_first_label
         source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> Prepared by UNCTAD secretariat based on FAO.')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Value of farmed seaweed, 2010–2020, billions of US dollars')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Value and volume of farmed seaweed, 2010–2020, billions of US dollars, millions of metric tons')}
         suffix=" billion USD"
         title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'The seaweed farming boom')}
         title_margin={80}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""
-        ymax={20}
-        ymin={0}
+        ymax={[undefined, undefined]}
+        ymin={[0, 0]}
         ytickinterval={2}
       />
       )}

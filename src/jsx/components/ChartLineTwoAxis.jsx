@@ -43,7 +43,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function LineChart({
-  allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title
+  allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, ymax, ymin
 }) {
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
@@ -345,8 +345,8 @@ function LineChart({
         },
         lineColor: 'transparent',
         lineWidth: 0,
-        max: 1400,
-        min: 400,
+        max: ymax[0],
+        min: ymin[0],
         opposite: false,
         showFirstLabel: show_first_label,
         showLastLabel: true,
@@ -378,8 +378,8 @@ function LineChart({
         },
         lineColor: 'transparent',
         lineWidth: 0,
-        max: 400,
-        min: 160,
+        max: ymax[1],
+        min: ymin[1],
         opposite: true,
         showFirstLabel: show_first_label,
         showLastLabel: true,
@@ -398,7 +398,7 @@ function LineChart({
       }]
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title]);
+  }, [allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, ymax, ymin]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -428,16 +428,20 @@ LineChart.propTypes = {
   source: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   suffix: PropTypes.string,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  ymax: PropTypes.instanceOf(Array),
+  ymin: PropTypes.instanceOf(Array)
 };
 
 LineChart.defaultProps = {
-  allow_decimals: true,
+  allow_decimals: false,
   line_width: 5,
   note: false,
   show_first_label: true,
   subtitle: false,
-  suffix: ''
+  suffix: '',
+  ymax: [undefined, undefined],
+  ymin: [undefined, undefined]
 };
 
 export default LineChart;
