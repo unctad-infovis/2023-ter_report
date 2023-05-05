@@ -43,7 +43,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function LineChart({
-  allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, xlabel, ymax, ymin, ytickinterval
+  allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, title_margin, xlabel, ymax, ymin, ytickinterval
 }) {
   data = data.filter((val) => (val.name !== ''));
   const chartRef = useRef();
@@ -251,7 +251,7 @@ function LineChart({
       },
       title: {
         align: 'left',
-        margin: 80,
+        margin: title_margin,
         style: {
           color: '#000',
           fontSize: '30px',
@@ -353,7 +353,7 @@ function LineChart({
       }
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, xlabel, ymax, ymin, ytickinterval]);
+  }, [allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, title_margin, xlabel, ymax, ymin, ytickinterval]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -385,6 +385,7 @@ LineChart.propTypes = {
   subtitle: PropTypes.string,
   suffix: PropTypes.string,
   title: PropTypes.string.isRequired,
+  title_margin: PropTypes.number,
   xlabel: PropTypes.string.isRequired,
   ymin: PropTypes.number,
   ymax: PropTypes.number,
@@ -398,8 +399,9 @@ LineChart.defaultProps = {
   show_first_label: true,
   subtitle: false,
   suffix: '',
-  ymin: undefined,
+  title_margin: 40,
   ymax: undefined,
+  ymin: undefined,
   ytickinterval: 10
 };
 

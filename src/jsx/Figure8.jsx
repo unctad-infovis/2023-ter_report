@@ -56,6 +56,7 @@ function Figure8({ lang }) {
         subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Value of farmed seaweed, 2010–2020, billions of US dollars')}
         suffix=" billion USD"
         title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'The seaweed farming boom')}
+        title_margin={80}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""
         ymax={20}

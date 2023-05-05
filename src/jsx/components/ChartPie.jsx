@@ -136,9 +136,10 @@ function PieChart({
             format: '{point.name}: <strong>{point.percentage:.1f}%</strong>',
             style: {
               fontFamily: 'Roboto',
+              color: '#fff',
               fontSize: '22px',
               fontWeight: 400,
-              textOutline: '0px solid #aaa'
+              textOutline: '1px solid #aaa'
             }
           },
           events: {
