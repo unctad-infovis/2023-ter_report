@@ -148,7 +148,7 @@ function PieChart({
             }
           },
           innerSize: '0%',
-          size: '80%',
+          size: '100%',
           states: {
             hover: {
               halo: {
