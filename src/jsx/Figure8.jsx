@@ -50,12 +50,12 @@ function Figure8({ lang }) {
         idx="8"
         lang={lang}
         line_width={5}
-        note={lang === 'fr' ? '<em>Note:</em>' : (lang === 'es' ? '<em>Nota:</em>' : '<em>Note:</em> ')}
+        note={false}
         show_first_label
-        source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> ')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Farmed seaweeds value, 2010–2020, billion dollars')}
+        source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> Prepared by UNCTAD secretariat based on FAO.')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Value of farmed seaweed, 2010–2020, billions of US dollars')}
         suffix=" billion USD"
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Value of seaweed farming has exploded in the 21st century')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'The seaweed farming boom')}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""
         ymax={20}

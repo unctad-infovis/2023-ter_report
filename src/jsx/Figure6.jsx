@@ -50,11 +50,11 @@ function Figure6({ lang }) {
         data={dataFigure}
         data_decimals={0}
         export_title_margin={30}
-        note={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Note:</em> ')}
-        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> ')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Growth rate of ocean economy services from 2019 to 2020, goods and services, percentage')}
+        note={false}
+        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD calculations based on UNCTADstat (accessed in January 2023).')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Growth rate of ocean economy exports from 2019 to 2020, goods and services')}
         suffix="%"
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Growth rate of services dropped more than goods in 2020 because of Covid-19')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Ocean-based services hit hardest by COVID-19')}
         x_axis_labels_offset={-10}
         ymax={15}
         ymin={-80}

@@ -184,7 +184,7 @@ function BarChart({
           fontWeight: 700
         },
         text: title,
-        widthAdjust: -180,
+        widthAdjust: -200,
         x: 100,
       },
       tooltip: {

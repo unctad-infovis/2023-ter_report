@@ -49,10 +49,10 @@ function Figure2({ lang }) {
         lang={lang}
         note={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Note:</em> Internet users are individuals who have used the Internet (from any location) in the last three months. The Internet can be used via a computer, mobile phone, personal digital assistant, games machine, digital TV, etc.')}
         show_first_label
-        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD calculation based on ITU (2022); Estimates for 2020 and 2021, forcasts for 2022.')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Internet access per gender, 2020–2022')}
+        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD calculation based on ITU (2022); Estimates for 2020 and 2021, forecasts for 2022.')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Internet access for men and women, 2020–2022')}
         suffix="%"
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Inequality in access to the Internet is high in least developed countries')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Gender gap in internet access is highest in least developed countries')}
         xcategories={lang === 'fr' ? [] : (lang === 'es' ? [] : ['Developed countries', 'Developing countries', 'Least developed countries'])}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '%')}
         ylabel=""

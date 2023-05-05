@@ -49,12 +49,12 @@ function Figure4({ lang }) {
         idx="4"
         data={dataFigure}
         data_decimals={0}
-        export_title_margin={30}
-        note={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Note:</em> ')}
-        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> ')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Exports per category in ocean economy, goods and services, billions of dollars')}
+        export_title_margin={70}
+        note={false}
+        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD estimates based on UNCTADstat (accessed in January 2023).')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Exports per category of ocean-based goods and services, 2020, billions of US dollars')}
         suffix=" billion USD"
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Exports of goods and services in ocean economy roughly equal in total value')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Sizing up the ocean economy')}
         x_axis_labels_offset={-10}
         ymax={350}
         ymin={0}

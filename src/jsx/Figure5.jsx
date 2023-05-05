@@ -75,12 +75,12 @@ function Figure5({ lang }) {
             data_decimals={0}
             idx="5b"
             lang={lang}
-            note={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Note:</em> ')}
+            note={false}
             show_first_label
-            source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> ')}
-            subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : '10 biggest exporting developing countries excluding China in ocean economy, goods and services, billions of dollars')}
+            source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD ranking based on UNCTADstat (accessed in January 2023).')}
+            subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Combined exports of goods and services, 2020, billions of US dollars')}
             suffix=""
-            title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'India is the largest ocean economy within developing countries excluding China')}
+            title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Top 10 ocean economy exporters among developing countries (excluding China)')}
             xcategories={['Goods', 'Services']}
             xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
             ymax={40}
@@ -95,12 +95,12 @@ function Figure5({ lang }) {
             data_decimals={0}
             idx="5a"
             lang={lang}
-            note={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Note:</em> ')}
+            note={false}
             show_first_label
-            source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> ')}
-            subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'European Union and 10 biggest exporting countries in ocean economy, goods and services, billions of dollars')}
+            source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD ranking based on UNCTADstat (accessed in January 2023).')}
+            subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Combined exports of goods and services, 2020, billions of US dollars')}
             suffix=""
-            title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'European Union is by far the biggest exporter in ocean economy')}
+            title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Top 10 ocean economy exporters in the world')}
             xcategories={['Goods', 'Services']}
             xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
             ymax={500}

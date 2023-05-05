@@ -50,12 +50,12 @@ function Figure7({ lang }) {
         idx="7"
         lang={lang}
         line_width={5}
-        note={lang === 'fr' ? '<em>Note:</em>' : (lang === 'es' ? '<em>Nota:</em>' : '<em>Note:</em> ')}
+        note={false}
         show_first_label
-        source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> https://stats.oecd.org/Index.aspx?datasetcode=FISH_FSE')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fisheries support, 2010–2020, billions of dollars')}
+        source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> UNCTAD based on OECD Fisheries Support Estimates data (2023).')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Fisheries support estimates for 40 industrialized nations, 2010–2020, billions of US dollars')}
         suffix=" billion USD"
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Global fishing subsidies are growing again after declining for 5 years in a row')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Wrong turn: Fisheries subsidies are back on the rise')}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""
         ymax={15}

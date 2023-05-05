@@ -50,12 +50,12 @@ function Figure1({ lang }) {
         idx="1"
         lang={lang}
         line_width={5}
-        note={lang === 'fr' ? '<em>Note:</em>' : (lang === 'es' ? '<em>Nota:</em>' : '<em>Note:</em> Internet users are individuals who have used the Internet (from any location) in the last three months. The Internet can be used via a computer, mobile phone, personal digital assistant, games machine, digital TV, etc. Time series data are not yet available for enough developing countries to allow the calculation of group averages for 2022, but ITU forecasts are used.')}
+        note={lang === 'fr' ? '<em>Note:</em>' : (lang === 'es' ? '<em>Nota:</em>' : '<em>Note:</em> Internet users are individuals who have used the Internet (from any location) in the last three months. The Internet can be used via a computer, mobile phone, personal digital assistant, games machine, digital TV, etc. Time series data are not yet available for enough developing countries to allow the calculations of group averages for 2022, but ITU forecasts are used.')}
         show_first_label
         source={lang === 'fr' ? '<em>Source:</em>' : (lang === 'es' ? '<em>Fuente:</em> ' : '<em>Source:</em> UNCTAD calculation based on ITU World Telecommunication/ICT Indicators Database, Jan 2023.')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Share of population using the Internet, 2005–2022')}
+        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Share of population using the internet, 2005–2022')}
         suffix="%"
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Internet usage in developing world in catching up slowly')}
+        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Internet use in the developing world is slowly catching up')}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""
         ymax={100}
