@@ -73,8 +73,8 @@ function Footer() {
                   </ul>
                 </li>
               </ul>
-              <ul className="hidden">
-                <li>
+              <ul>
+                <li className="hidden">
                   <h4>Download the report video</h4>
                   <ul>
                     <li>
@@ -94,22 +94,22 @@ function Footer() {
                     </li>
                   </ul>
                 </li>
-                <li className="hidden">
+                <li>
                   <h4>Read the news article</h4>
                   <ul>
                     <li>
-                      <a href="/press-material/unctad-warns-policy-induced-global-recession-inadequate-financial-support-leaves" onClick={(event) => track(event.target.href)}>English</a>
+                      <a href="/news/global-blue-deal-urgently-needed-protect-and-invest-our-ocean" onClick={(event) => track(event.target.href)}>English</a>
                       {', '}
-                      <a href="/fr/press-material/la-cnuced-met-en-garde-contre-une-recession-mondiale-induite-par-les-politiques" onClick={(event) => track(event.target.href)}>Français</a>
+                      <a href="/fr/news/il-est-urgent-dadopter-un-pacte-bleu-mondial-pour-investir-et-proteger-nos-oceans" onClick={(event) => track(event.target.href)}>Français</a>
                       {', '}
-                      <a href="/es/press-material/la-unctad-advierte-de-una-ralentizacion-mundial-provocada-por-los-ajustes-de" onClick={(event) => track(event.target.href)}>Español</a>
+                      <a href="/es/news/se-necesita-con-urgencia-un-pacto-azul-mundial-para-proteger-e-invertir-en-nuestro-oceano" onClick={(event) => track(event.target.href)}>Español</a>
                       {', '}
                     </li>
                   </ul>
                 </li>
               </ul>
               <h4><a href="/publication/trade-and-environment-review-2023">Download the report</a></h4>
-              <div><a href="/publication/trade-and-environment-review-2023"><img src={`${window.location.href.includes('unctad') ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/img/2023-ter_report_cover.jpg`} alt="TER 2023 Cover" /></a></div>
+              <div><a href="/publication/trade-and-environment-review-2023"><img src={`${window.location.href.includes('unctad') ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/img/2023-ter_report_cover.png`} alt="TER 2023 Cover" /></a></div>
             </div>
           </div>
         </div>

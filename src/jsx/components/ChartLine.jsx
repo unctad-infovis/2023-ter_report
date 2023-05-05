@@ -48,7 +48,7 @@ function LineChart({
   data = data.filter((val) => (val.name !== ''));
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
-  const chartHeight = 700;
+  const chartHeight = 650;
   const createChart = useCallback(() => {
     Highcharts.chart(`chartIdx${idx}`, {
       caption: {
@@ -190,7 +190,7 @@ function LineChart({
         rules: [{
           chartOptions: {
             title: {
-              margin: 20
+              margin: title_margin - 20
             }
           },
           condition: {

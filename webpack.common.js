@@ -73,6 +73,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: 'assets/img/', to: '../public/assets/img/', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
+        { from: 'assets/vid/', to: '../public/assets/vid/', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
         { from: 'assets/data/data - Figure1.csv', to: '../public/assets/data/2023-ter_report_figure1_en.csv', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
         { from: 'assets/data/data - Figure2.csv', to: '../public/assets/data/2023-ter_report_figure2_en.csv', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
         { from: 'assets/data/data - Figure3.csv', to: '../public/assets/data/2023-ter_report_figure3_en.csv', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
