@@ -71,7 +71,7 @@ function StackedBarChart({
         events: {
           load() {
             // eslint-disable-next-line react/no-this-in-sfc
-            this.renderer.image('https://storage.unctad.org/2023-tdr_report_update/assets/img/unctad_logo.svg', 5, 15, 80, 100).add();
+            this.renderer.image('https://storage.unctad.org/2023-ter_report/assets/img/unctad_logo.svg', 5, 15, 80, 100).add();
           }
         },
         height: chartHeight,

@@ -13,7 +13,7 @@ function Footer() {
     }
   };
   return (
-    <div className="app">
+    <div className="app" id="app_footer">
       <div className="footer_container">
         <h2>What do you want to do next?</h2>
         <div className="download_button anchor_downloads"><a href="/publication/trade-and-environment-review-2023">Download the report</a></div>
@@ -22,21 +22,23 @@ function Footer() {
             <div className="footer_content anchor_video">
               <h3>Watch the video</h3>
               <div className="iframe_container youtube_iframe">
-                <iframe src="" title="Video 1" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                <iframe src="https://www.youtube.com/embed/NJxALd9e1FA" title="Trade and Environment Review" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
               </div>
               <ul>
                 <li>
-                  <a href="#video" target="_blank" rel="noreferrer">Français</a>
+                  <a href="https://youtu.be/I83M2618KIY" target="_blank" rel="noreferrer">Français</a>
                   {', '}
-                  <a href="#video" target="_blank" rel="noreferrer">Español</a>
+                  <a href="https://youtu.be/MxuCOLvslxk" target="_blank" rel="noreferrer">Español</a>
                   {', '}
-                  <a href="#video" target="_blank" rel="noreferrer">العربية</a>
+                  <a href="https://youtu.be/zXttEgXDN6U" target="_blank" rel="noreferrer">العربية</a>
                   {', '}
-                  <a href="#video" target="_blank" rel="noreferrer">简体中文</a>
+                  <a href="https://youtu.be/hnr5TJ7emZo" target="_blank" rel="noreferrer">简体中文</a>
+                  <span className="hidden">{', '}</span>
+                  <a href="#video" target="_blank" rel="noreferrer" className="hidden">Русский</a>
                   {', '}
-                  <a href="#video" target="_blank" rel="noreferrer">Русский</a>
+                  <a href="https://youtu.be/r-yU48NJQnw" target="_blank" rel="noreferrer">Português</a>
                   {', '}
-                  <a href="#video" target="_blank" rel="noreferrer">Português</a>
+                  <a href="https://youtu.be/b28pMRN3I1c" target="_blank" rel="noreferrer">Kiswahili</a>
                 </li>
               </ul>
             </div>
@@ -66,7 +68,7 @@ function Footer() {
                 <li>
                   <h4>Press conference</h4>
                   <div className="iframe_container youtube_iframe">
-                    <iframe src="https://www.youtube.com/embed/QqDYv5-bDhU" title="Video 2" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                    <iframe src="https://www.youtube.com/embed/QqDYv5-bDhU" title="Trade and Environment Review press conference" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
                   </div>
                   <ul>
                     <li><a href="#video" target="_blank" rel="noreferrer">Download the press conference</a></li>
@@ -74,23 +76,25 @@ function Footer() {
                 </li>
               </ul>
               <ul>
-                <li className="hidden">
+                <li>
                   <h4>Download the report video</h4>
                   <ul>
                     <li>
-                      <a href="#video" target="_blank" rel="noreferrer">English</a>
+                      <a href="https://vimeo.com/823774497" target="_blank" rel="noreferrer">English</a>
                       {', '}
-                      <a href="#video" target="_blank" rel="noreferrer">Français</a>
+                      <a href="https://vimeo.com/824210062" target="_blank" rel="noreferrer">Français</a>
                       {', '}
-                      <a href="#video" target="_blank" rel="noreferrer">Español</a>
+                      <a href="https://vimeo.com/824210366" target="_blank" rel="noreferrer">Español</a>
                       {', '}
-                      <a href="#video" target="_blank" rel="noreferrer">العربية</a>
+                      <a href="https://vimeo.com/824209722" target="_blank" rel="noreferrer">العربية</a>
                       {', '}
-                      <a href="#video" target="_blank" rel="noreferrer">简体中文</a>
+                      <a href="https://vimeo.com/824209838" target="_blank" rel="noreferrer">简体中文</a>
+                      <span className="hidden">{', '}</span>
+                      <a href="#video" target="_blank" rel="noreferrer" className="hidden">Русский</a>
                       {', '}
-                      <a href="#video" target="_blank" rel="noreferrer">Русский</a>
+                      <a href="https://vimeo.com/824210255" target="_blank" rel="noreferrer">Português</a>
                       {', '}
-                      <a href="#video" target="_blank" rel="noreferrer">Português</a>
+                      <a href="https://vimeo.com/824210152" target="_blank" rel="noreferrer">Kiswahili</a>
                     </li>
                   </ul>
                 </li>
@@ -103,7 +107,6 @@ function Footer() {
                       <a href="/fr/news/il-est-urgent-dadopter-un-pacte-bleu-mondial-pour-investir-et-proteger-nos-oceans" onClick={(event) => track(event.target.href)}>Français</a>
                       {', '}
                       <a href="/es/news/se-necesita-con-urgencia-un-pacto-azul-mundial-para-proteger-e-invertir-en-nuestro-oceano" onClick={(event) => track(event.target.href)}>Español</a>
-                      {', '}
                     </li>
                   </ul>
                 </li>

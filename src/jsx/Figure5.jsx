@@ -27,7 +27,7 @@ function Figure5({ lang }) {
 
   useEffect(() => {
     try {
-      fetch(`${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure5b_${lang}.csv`)
+      fetch(`${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure5b_en.csv`)
         .then((response) => {
           if (!response.ok) {
             throw Error(response.statusText);
@@ -40,7 +40,7 @@ function Figure5({ lang }) {
     }
 
     try {
-      fetch(`${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure5a_${lang}.csv`)
+      fetch(`${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure5a_en.csv`)
         .then((response) => {
           if (!response.ok) {
             throw Error(response.statusText);

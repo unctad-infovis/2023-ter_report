@@ -26,7 +26,7 @@ function Figure11({ lang }) {
   }]);
 
   useEffect(() => {
-    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure11_${lang}.csv`;
+    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure11_en.csv`;
     try {
       fetch(data_file)
         .then((response) => {

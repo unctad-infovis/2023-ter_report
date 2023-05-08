@@ -27,7 +27,7 @@ function Figure4({ lang }) {
   });
 
   useEffect(() => {
-    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure4_${lang}.csv`;
+    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure4_en.csv`;
     try {
       fetch(data_file)
         .then((response) => {
@@ -51,10 +51,10 @@ function Figure4({ lang }) {
         data_decimals={0}
         export_title_margin={70}
         note={false}
-        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD estimates based on UNCTADstat (accessed in January 2023).')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Exports per category of ocean-based goods and services, 2020, billions of US dollars')}
+        source={lang === 'fr' ? '<em>Source:</em> NCTAD estimates based on UNCTADstat (accessed in January 2023).' : (lang === 'es' ? '<em>Fuente:</em> NCTAD estimates based on UNCTADstat (accessed in January 2023).' : '<em>Source:</em> UNCTAD estimates based on UNCTADstat (accessed in January 2023).')}
+        subtitle={lang === 'fr' ? 'Exports per category of ocean-based goods and services, 2020, billions of US dollars' : (lang === 'es' ? 'Exports per category of ocean-based goods and services, 2020, billions of US dollars' : 'Exports per category of ocean-based goods and services, 2020, billions of US dollars')}
         suffix=" billion USD"
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Sizing up the ocean economy')}
+        title={lang === 'fr' ? 'Sizing up the ocean economy' : (lang === 'es' ? 'Sizing up the ocean economy' : 'Sizing up the ocean economy')}
         x_axis_labels_offset={-10}
         ymax={350}
         ymin={0}

@@ -27,7 +27,7 @@ function Figure6({ lang }) {
   });
 
   useEffect(() => {
-    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure6_${lang}.csv`;
+    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-ter_report/' : './'}assets/data/2023-ter_report_figure6_en.csv`;
     try {
       fetch(data_file)
         .then((response) => {
@@ -48,13 +48,13 @@ function Figure6({ lang }) {
       <ChartBar
         idx="6"
         data={dataFigure}
-        data_decimals={0}
+        data_decimals={1}
         export_title_margin={30}
         note={false}
-        source={lang === 'fr' ? '<em>Note:</em> ' : (lang === 'es' ? '<em>Nota:</em> ' : '<em>Source:</em> UNCTAD calculations based on UNCTADstat (accessed in January 2023).')}
-        subtitle={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Growth rate of ocean economy exports from 2019 to 2020, goods and services')}
+        source={lang === 'fr' ? '<em>Source:</em> ' : (lang === 'es' ? '<em>Fuente:</em> UNCTAD calculations based on UNCTADstat (accessed in January 2023).' : '<em>Source:</em> UNCTAD calculations based on UNCTADstat (accessed in January 2023).')}
+        subtitle={lang === 'fr' ? 'Growth rate of ocean economy exports from 2019 to 2020, goods and services' : (lang === 'es' ? 'Growth rate of ocean economy exports from 2019 to 2020, goods and services' : 'Growth rate of ocean economy exports from 2019 to 2020, goods and services')}
         suffix="%"
-        title={lang === 'fr' ? '' : (lang === 'es' ? '' : 'Ocean-based services hit hardest by COVID-19')}
+        title={lang === 'fr' ? 'Ocean-based services hit hardest by COVID-' : (lang === 'es' ? 'Ocean-based services hit hardest by COVID-' : 'Ocean-based services hit hardest by COVID-19')}
         x_axis_labels_offset={-10}
         ymax={15}
         ymin={-80}
