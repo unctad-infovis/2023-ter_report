@@ -58,7 +58,7 @@ function Figure8({ lang }) {
         source={lang === 'fr' ? '<em>Source:</em> Prepared by UNCTAD secretariat based on FAO.' : (lang === 'es' ? '<em>Fuente:</em> Prepared by UNCTAD secretariat based on FAO.' : '<em>Source:</em> Prepared by UNCTAD secretariat based on FAO.')}
         subtitle={lang === 'fr' ? 'Value and volume of farmed seaweed, 2010–2020, billions of US dollars, millions of metric tons' : (lang === 'es' ? 'Value and volume of farmed seaweed, 2010–2020, billions of US dollars, millions of metric tons' : 'Value and volume of farmed seaweed, 2010–2020, billions of US dollars, millions of metric tons')}
         suffix=" billion USD"
-        title={lang === 'fr' ? 'The seaweed farming boo' : (lang === 'es' ? 'The seaweed farming boo' : 'The seaweed farming boom')}
+        title={lang === 'fr' ? 'The seaweed farming boom' : (lang === 'es' ? 'The seaweed farming boom' : 'The seaweed farming boom')}
         title_margin={80}
         xlabel={lang === 'fr' ? '' : (lang === 'es' ? '' : '')}
         ylabel=""
