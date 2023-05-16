@@ -33,8 +33,8 @@ function Footer() {
                   <a href="https://youtu.be/zXttEgXDN6U" target="_blank" rel="noreferrer">العربية</a>
                   {', '}
                   <a href="https://youtu.be/hnr5TJ7emZo" target="_blank" rel="noreferrer">简体中文</a>
-                  <span className="hidden">{', '}</span>
-                  <a href="#video" target="_blank" rel="noreferrer" className="hidden">Русский</a>
+                  {', '}
+                  <a href="https://youtu.be/0ObAeDLn0uI" target="_blank" rel="noreferrer">Русский</a>
                   {', '}
                   <a href="https://youtu.be/r-yU48NJQnw" target="_blank" rel="noreferrer">Português</a>
                   {', '}
@@ -89,8 +89,8 @@ function Footer() {
                       <a href="https://vimeo.com/824209722" target="_blank" rel="noreferrer">العربية</a>
                       {', '}
                       <a href="https://vimeo.com/824209838" target="_blank" rel="noreferrer">简体中文</a>
-                      <span className="hidden">{', '}</span>
-                      <a href="#video" target="_blank" rel="noreferrer" className="hidden">Русский</a>
+                      {', '}
+                      <a href="https://vimeo.com/826140188" target="_blank" rel="noreferrer">Русский</a>
                       {', '}
                       <a href="https://vimeo.com/824210255" target="_blank" rel="noreferrer">Português</a>
                       {', '}
