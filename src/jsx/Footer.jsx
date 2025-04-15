@@ -6,7 +6,7 @@ function Footer() {
     if (typeof analytics !== 'undefined' && label_event !== false && value_event !== false) {
       analytics('event', 'project_interaction', {
         label: label_event,
-        project_name: '2023-hbs_report',
+        project_name: '2023-ter_report',
         transport_type: 'beacon',
         value: value_event
       });
