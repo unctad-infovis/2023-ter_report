@@ -1,17 +1,17 @@
-import React, { /* useState,  useEffect, useRef */ } from 'react';
-
-const analytics = window.gtag || undefined;
+import React, { useCallback/* , useState, */ } from 'react';
 
 function Footer() {
-  const track = (name) => {
-    if (typeof analytics !== 'undefined') {
-      analytics('event', 'Press material', {
-        event_category: '2023-ter_report',
-        event_label: name,
-        transport_type: 'beacon'
+  const analytics = window.gtag || undefined;
+  const track = useCallback((label_event = false, value_event = false) => {
+    if (typeof analytics !== 'undefined' && label_event !== false && value_event !== false) {
+      analytics('event', 'project_interaction', {
+        label: label_event,
+        project_name: '2023-hbs_report',
+        transport_type: 'beacon',
+        value: value_event
       });
     }
-  };
+  }, [analytics]);
   return (
     <div className="app" id="app_footer">
       <div className="footer_container">
@@ -102,11 +102,11 @@ function Footer() {
                   <h4>Read the news article</h4>
                   <ul>
                     <li>
-                      <a href="/news/global-blue-deal-urgently-needed-protect-and-invest-our-ocean" onClick={(event) => track(event.target.href)}>English</a>
+                      <a href="/news/global-blue-deal-urgently-needed-protect-and-invest-our-ocean" onClick={(event) => track('Anchor', event.target.href)}>English</a>
                       {', '}
-                      <a href="/fr/news/il-est-urgent-dadopter-un-pacte-bleu-mondial-pour-investir-et-proteger-nos-oceans" onClick={(event) => track(event.target.href)}>Français</a>
+                      <a href="/fr/news/il-est-urgent-dadopter-un-pacte-bleu-mondial-pour-investir-et-proteger-nos-oceans" onClick={(event) => track('Anchor', event.target.href)}>Français</a>
                       {', '}
-                      <a href="/es/news/se-necesita-con-urgencia-un-pacto-azul-mundial-para-proteger-e-invertir-en-nuestro-oceano" onClick={(event) => track(event.target.href)}>Español</a>
+                      <a href="/es/news/se-necesita-con-urgencia-un-pacto-azul-mundial-para-proteger-e-invertir-en-nuestro-oceano" onClick={(event) => track('Anchor', event.target.href)}>Español</a>
                     </li>
                   </ul>
                 </li>
