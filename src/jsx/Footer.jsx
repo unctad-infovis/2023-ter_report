@@ -22,7 +22,7 @@ function Footer() {
             <div className="footer_content anchor_video">
               <h3>Watch the video</h3>
               <div className="iframe_container youtube_iframe">
-                <iframe src="https://www.youtube.com/embed/NJxALd9e1FA" title="Trade and Environment Review" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                <iframe src="https://www.youtube.com/embed/NJxALd9e1FA" title="Trade and Environment Review" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />
               </div>
               <ul>
                 <li>
