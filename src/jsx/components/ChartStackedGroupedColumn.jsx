@@ -57,7 +57,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 }(Highcharts));
 
 function ChartStackedGroupedColumn({
-  data, idx, note, source, subtitle, suffix, title, xcategories, xlabel, ylabel, ymax, ymin
+  data, idx, note = false, source, subtitle = false, suffix = false, title, xcategories, xlabel = '', ylabel = '', ymax = undefined, ymin = undefined
 }) {
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
@@ -399,16 +399,6 @@ ChartStackedGroupedColumn.propTypes = {
   ylabel: PropTypes.string,
   ymax: PropTypes.number,
   ymin: PropTypes.number
-};
-
-ChartStackedGroupedColumn.defaultProps = {
-  note: false,
-  subtitle: false,
-  suffix: false,
-  xlabel: '',
-  ylabel: '',
-  ymax: undefined,
-  ymin: undefined
 };
 
 export default ChartStackedGroupedColumn;

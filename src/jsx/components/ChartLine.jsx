@@ -43,7 +43,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function LineChart({
-  allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title, title_margin, xlabel, ymax, ymin, ytickinterval
+  allow_decimals = false, data, idx, line_width = 3, note = false, show_first_label = true, source, subtitle = false, suffix = '', title, title_margin = 40, xlabel, ymax = undefined, ymin = undefined, ytickinterval = 10
 }) {
   data = data.filter((val) => (val.name !== ''));
   const chartRef = useRef();
@@ -390,19 +390,6 @@ LineChart.propTypes = {
   ymin: PropTypes.number,
   ymax: PropTypes.number,
   ytickinterval: PropTypes.number
-};
-
-LineChart.defaultProps = {
-  allow_decimals: false,
-  line_width: 3,
-  note: false,
-  show_first_label: true,
-  subtitle: false,
-  suffix: '',
-  title_margin: 40,
-  ymax: undefined,
-  ymin: undefined,
-  ytickinterval: 10
 };
 
 export default LineChart;

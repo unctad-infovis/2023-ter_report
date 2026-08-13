@@ -9,7 +9,7 @@ import ChartTreemap from './components/ChartTreemap.jsx';
 
 import '../styles/styles.less';
 
-function Figure9({ lang }) {
+function Figure9({ lang = 'en' }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
@@ -146,10 +146,6 @@ function Figure9({ lang }) {
 
 Figure9.propTypes = {
   lang: PropTypes.string
-};
-
-Figure9.defaultProps = {
-  lang: 'en'
 };
 
 export default Figure9;

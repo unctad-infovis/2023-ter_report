@@ -8,7 +8,7 @@ import ChartBar from './components/ChartBar.jsx';
 
 import '../styles/styles.less';
 
-function Figure4({ lang }) {
+function Figure4({ lang = 'en' }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
@@ -68,10 +68,6 @@ function Figure4({ lang }) {
 
 Figure4.propTypes = {
   lang: PropTypes.string
-};
-
-Figure4.defaultProps = {
-  lang: 'en'
 };
 
 export default Figure4;

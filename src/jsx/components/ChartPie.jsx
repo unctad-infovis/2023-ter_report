@@ -43,7 +43,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function PieChart({
-  allow_decimals, data, export_title_margin, idx, labels, note, source, subtitle, tick_interval, title, xlabel, ymax, ymin, ystep
+  allow_decimals = true, data, export_title_margin = 0, idx, labels = false, note = false, source, subtitle = false, tick_interval = 1, title, xlabel = '', ymax = undefined, ymin = undefined, ystep = 1
 }) {
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
@@ -314,19 +314,6 @@ PieChart.propTypes = {
   ymax: PropTypes.number,
   ymin: PropTypes.number,
   ystep: PropTypes.number
-};
-
-PieChart.defaultProps = {
-  allow_decimals: true,
-  export_title_margin: 0,
-  labels: false,
-  note: false,
-  subtitle: false,
-  tick_interval: 1,
-  xlabel: '',
-  ymax: undefined,
-  ymin: undefined,
-  ystep: 1
 };
 
 export default PieChart;

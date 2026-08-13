@@ -6,7 +6,7 @@ import '../styles/styles.less';
 import CSVtoJSON from './helpers/CSVtoJSON.js';
 import ChartPie from './components/ChartPie.jsx';
 
-function Figure11({ lang }) {
+function Figure11({ lang = 'en' }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
@@ -64,10 +64,6 @@ function Figure11({ lang }) {
 
 Figure11.propTypes = {
   lang: PropTypes.string
-};
-
-Figure11.defaultProps = {
-  lang: 'en'
 };
 
 export default Figure11;

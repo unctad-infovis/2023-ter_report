@@ -7,7 +7,7 @@ import ChartStackedBar from './components/ChartStackedBar.jsx';
 
 import '../styles/styles.less';
 
-function Figure5({ lang }) {
+function Figure5({ lang = 'en' }) {
   // Data states.
   const [dataFigure1, setDataFigure1] = useState(false);
   const [dataFigure2, setDataFigure2] = useState(false);
@@ -115,10 +115,6 @@ function Figure5({ lang }) {
 
 Figure5.propTypes = {
   lang: PropTypes.string
-};
-
-Figure5.defaultProps = {
-  lang: 'en'
 };
 
 export default Figure5;

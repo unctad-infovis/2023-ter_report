@@ -8,7 +8,7 @@ import ChartLine from './components/ChartLine.jsx';
 
 import '../styles/styles.less';
 
-function Figure7({ lang }) {
+function Figure7({ lang = 'en' }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
@@ -70,10 +70,6 @@ function Figure7({ lang }) {
 
 Figure7.propTypes = {
   lang: PropTypes.string
-};
-
-Figure7.defaultProps = {
-  lang: 'en'
 };
 
 export default Figure7;

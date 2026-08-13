@@ -7,7 +7,7 @@ import ChartLineTwoAxis from './components/ChartLineTwoAxis.jsx';
 
 import '../styles/styles.less';
 
-function Figure10({ lang }) {
+function Figure10({ lang = 'en' }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
@@ -69,10 +69,6 @@ function Figure10({ lang }) {
 
 Figure10.propTypes = {
   lang: PropTypes.string
-};
-
-Figure10.defaultProps = {
-  lang: 'en'
 };
 
 export default Figure10;
