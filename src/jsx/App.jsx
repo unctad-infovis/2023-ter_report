@@ -7,7 +7,7 @@ import '../styles/styles.less';
 
 // const appID = '#app-root-2023-ter_report';
 
-const App = () => {
+function App() {
   // Data states.
   // const [data, setData] = useState(false);
 
@@ -22,8 +22,7 @@ const App = () => {
       //     return response.text();
       //   })
       //   .then(body => setData(JSON.parse(body)));
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
     }
   }, []);
@@ -33,6 +32,6 @@ const App = () => {
       <noscript>Your browser does not support JavaScript!</noscript>
     </div>
   );
-};
+}
 
 export default App;
